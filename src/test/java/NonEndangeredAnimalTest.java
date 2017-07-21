@@ -49,6 +49,30 @@ public class NonEndangeredAnimalTest {
   }
 
   @Test
+  public void equals_comparesTwoAnimalObjectsAndDeterminesTheyAreDifferent_false() {
+    NonEndangeredAnimal firstNonEndangeredAnimal = new NonEndangeredAnimal("Fox", "Healthy", "Young");
+    firstNonEndangeredAnimal.save();
+    NonEndangeredAnimal secondNonEndangeredAnimal = new NonEndangeredAnimal("Fox", "Healthy", "Young");
+    secondNonEndangeredAnimal.save();
+    NonEndangeredAnimal oneSaved = NonEndangeredAnimal.find(firstNonEndangeredAnimal.getId());
+    NonEndangeredAnimal twoSaved = NonEndangeredAnimal.find(secondNonEndangeredAnimal.getId());
+    assertFalse(firstNonEndangeredAnimal.equals(secondNonEndangeredAnimal));
+    assertFalse(oneSaved.equals(twoSaved));
+  }
+
+  @Test
+  public void equals_comparesTwoAnimalTypesAsWellAsId_false() {
+    NonEndangeredAnimal firstNonEndangeredAnimal = new NonEndangeredAnimal("Fox", "Healthy", "Young");
+    firstNonEndangeredAnimal.save();
+    EndangeredAnimal secondEndangeredAnimal = new EndangeredAnimal("Fox", "Healthy", "Young");
+    secondEndangeredAnimal.save();
+    NonEndangeredAnimal oneSaved = NonEndangeredAnimal.find(firstNonEndangeredAnimal.getId());
+    EndangeredAnimal twoSaved = EndangeredAnimal.find(secondEndangeredAnimal.getId());
+    assertFalse(firstNonEndangeredAnimal.equals(secondEndangeredAnimal));
+    assertFalse(oneSaved.equals(twoSaved));
+  }
+
+  @Test
   public void update_updatesHealthAttribute_true() {
     NonEndangeredAnimal testNonEndangeredAnimal = new NonEndangeredAnimal("Fox", "Healthy", "Young");
     testNonEndangeredAnimal.save();

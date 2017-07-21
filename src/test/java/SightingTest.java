@@ -20,7 +20,6 @@ public class SightingTest {
     assertEquals(true, testSighting instanceof Sighting);
   }
 
-  //Override equals not looking at Id
   @Test
   public void equals_returnsTrueIfLocationAndDescriptionAreSame_true() {
     EndangeredAnimal firstEndangeredAnimal = new EndangeredAnimal("Fox", "Healthy", "Young");
@@ -69,6 +68,19 @@ public class SightingTest {
   @Test
   public void find_returnsNullWhenNoEndangeredAnimalFound_null() {
     assertTrue(EndangeredAnimal.find(999) == null);
+  }
+
+  @Test
+  public void getOccurrence_returnsOccurrenceOfSightingAndCompares_String() {
+    EndangeredAnimal firstEndangeredAnimal = new EndangeredAnimal("Fox", "Healthy", "Young");
+    firstEndangeredAnimal.save();
+    Sighting testSighting = new Sighting (firstEndangeredAnimal.getId(), "45.472428, -121.946466", "Ranger Avery");
+    testSighting.save();
+    EndangeredAnimal secondEndangeredAnimal = new EndangeredAnimal("Badger", "Okay", "Adult");
+    secondEndangeredAnimal.save();
+    Sighting secondTestSighting = new Sighting (secondEndangeredAnimal.getId(), "45.472428, -121.946466", "Ranger Reese");
+    secondTestSighting.save();
+    assertEquals(Sighting.find(testSighting.getId()).getOccurrence(), Sighting.find(secondTestSighting.getId()).getOccurrence());
   }
 
 }
