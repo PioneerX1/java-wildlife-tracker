@@ -13,6 +13,10 @@ public class Sighting {
   private Timestamp occurrence;
 
   public Sighting(int animal_id, String location, String ranger_name) {
+    if(location.equals("") || ranger_name.equals("")) {
+      throw new IllegalArgumentException("Need ranger name or location");
+    }
+
     this.animal_id = animal_id;
     this.location = location;
     this.ranger_name = ranger_name;
@@ -33,6 +37,10 @@ public class Sighting {
 
   public String getRangerName() {
     return ranger_name;
+  }
+
+  public Timestamp getOccurrence() {
+    return occurrence;
   }
 
   @Override

@@ -6,6 +6,9 @@ public class NonEndangeredAnimal extends Animal{
   public static final String DATABASE_TYPE = "nonendangered";
 
   public NonEndangeredAnimal(String name, String health, String age) {
+    if (name.equals("")) {
+      throw new IllegalArgumentException("No species/name listed!");
+    }
     this.name = name;
     this.id = id;
     this.health = health;
