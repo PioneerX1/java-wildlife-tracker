@@ -5,7 +5,7 @@
 
 <h3> Report Non-Endangered Animal Sighting </h3>
 <form action="/sighting" method="post">
-  #if($animals.size() >= 0)
+  #if($animals.size() > 0)
     <label>Select Animal</label>
     <select name="animalSelected">
       #foreach($animal in $animals)
@@ -18,6 +18,8 @@
     <label>Your Name</label>
     <input type="text" name="rangerName">
     <button type="submit">Submit Report</button>
+  #else
+    <h4>No Non-Endangered Animals in Database, Please create one to Report a Sighting.</h4>
   #end
 </form>
 
@@ -25,7 +27,7 @@
 
 <h3> Report Endangered Animal Sighting </h3>
 <form action="/endangered_sighting" method="post">
-  #if($endangeredAnimals.size() >= 0)
+  #if($endangeredAnimals.size() > 0)
     <label>Select Endangered Animal</label>
     <select name="endangeredAnimalSelected">
       #foreach($endangered_animal in $endangeredAnimals)
@@ -38,6 +40,8 @@
     <label>Your Name</label>
     <input type="text" name="rangerName">
     <button type="submit">Submit Report</button>
+  #else
+    <h4>No Endangered Animals in Database, Please create one to Report a Sighting.</h4>
   #end
 </form>
 
