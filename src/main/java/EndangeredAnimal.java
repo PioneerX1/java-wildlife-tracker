@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EndangeredAnimal extends Animal{
-  public static final DATABASE_TYPE = "endangered";
+  public static final String DATABASE_TYPE = "endangered";
 
   public EndangeredAnimal(String name, String health, String age) {
     this.name = name;
@@ -22,7 +22,8 @@ public class EndangeredAnimal extends Animal{
     } else {
       EndangeredAnimal newEndangeredAnimal = (EndangeredAnimal) otherEndangeredAnimal;
       return  this.getId() == newEndangeredAnimal.getId() &&
-              this.getName().equals(newEndangeredAnimal.getName()) && this.getHealth().equals(newEndangeredAnimal.getHealth()) && this.getAge().equals(newEndangeredAnimal.getAge());
+              this.getName().equals(newEndangeredAnimal.getName()) && this.getHealth().equals(newEndangeredAnimal.getHealth()) && this.getAge().equals(newEndangeredAnimal.getAge()) &&
+              this.getType().equals(newEndangeredAnimal.getType());
     }
   }
 
