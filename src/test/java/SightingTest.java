@@ -20,6 +20,7 @@ public class SightingTest {
     assertEquals(true, testSighting instanceof Sighting);
   }
 
+  //Override equals not looking at Id
   @Test
   public void equals_returnsTrueIfLocationAndDescriptionAreSame_true() {
     Animal testAnimal = new Animal("Deer");

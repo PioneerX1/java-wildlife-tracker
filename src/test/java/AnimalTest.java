@@ -21,6 +21,7 @@ public class AnimalTest {
     assertEquals("Deer", testAnimal.getName());
   }
 
+  //false positive cause Override Equals does NOT compare Id's
   @Test
   public void equals_returnsTrueIfNameIsTheSame_false() {
     Animal firstAnimal = new Animal("Deer");
@@ -37,7 +38,7 @@ public class AnimalTest {
   }
 
   @Test
-  public void all_returnsAllInstancesOfAnimal_false() {
+  public void all_returnsAllInstancesOfAnimal_true() {
     Animal firstAnimal = new Animal("Deer");
     firstAnimal.save();
     Animal secondAnimal = new Animal("Black Bear");
@@ -63,11 +64,15 @@ public class AnimalTest {
     assertEquals(0, Animal.all().size());
   }
 
+  //HOW is this passing? Should just be pulling from memory, not DB??
+  //added fix
   public void updateName_updatesAnimalNameInDatabase_String() {
     Animal testAnimal = new Animal("Deer");
     testAnimal.save();
     testAnimal.updateName("Buck");
-    assertEquals("Buck", testAnimal.getName());
+    Animal savedAnimal = Animal.find(testAnimal.getId());
+    // assertEquals("Buck", testAnimal.getName());
+    assertEquals("Buck", savedAnimal.getName());
   }
 
   @Test
