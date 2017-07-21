@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.sql.Timestamp;
 import java.util.Timer;
+import java.text.DateFormat;
 
 public class Sighting {
   private int animal_id;
@@ -39,8 +40,8 @@ public class Sighting {
     return ranger_name;
   }
 
-  public Timestamp getOccurrence() {
-    return occurrence;
+  public String getOccurrence() {
+    return DateFormat.getDateTimeInstance().format(occurrence);
   }
 
   @Override
